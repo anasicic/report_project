@@ -1,15 +1,34 @@
 {% extends "invoice/base.html" %}
 {% block content %}
-	{% for invoice in invoices %}
-	    <article class="media content-section">
-		 <div class="media-body">
-		   <div class="article-metadata">
-		     <a class="mr-2" href="#">{{ invoice.account_number }}</a>
-		     <small class="text-muted">{{ invoice.invoice_amount }}</small>
-		    </div>
-		    <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-		    <p class="article-content">{{ inovoice.date }}</p>
-		  </div>
-		</article>
-	{% endfor %}
+    {% for cost_type in data.TypeOfCost %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">{{ cost_type.cost_code }}</a>
+                    <small class="text-muted">{{ cost_type.cost_name }}</small>
+                </div>
+            </div>
+        </article>
+    {% endfor %}
+
+    {% for cost_center in data.CostCenter %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">{{ cost_center.cost_center_code }}</a>
+                    <small class="text-muted">{{ cost_center.cost_center_name }}</small>
+                </div>
+            </div>
+        </article>
+    {% endfor %}
+
+    {% for supplier in data.Supplier %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <small class="text-muted">{{ supplier.supplier_name }}</small>
+                </div>
+            </div>
+        </article>
+    {% endfor %}
 {% endblock content %}
