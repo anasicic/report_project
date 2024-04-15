@@ -1,23 +1,32 @@
-import json
 from django.core.management.base import BaseCommand
 from invoice.models import TypeOfCost, CostCenter, Supplier
+import json
+import os
 
 class Command(BaseCommand):
-    help = 'Generira seed podatke iz JSON datoteke i sprema ih u bazu podataka'
+    help = 'Popunjava bazu podacima iz JSON datoteke'
 
     def handle(self, *args, **kwargs):
-        file_name = "seed_data.json"
+        # Definirajte apsolutnu putanju do datoteke seed_data.json
+        file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "seed_data.json")
 
-        with open(file_name) as json_file:
-            data = json.load(json_file)
+        # Provjera postoji li datoteka seed_data.json
+        if os.path.isfile(file_path):
+            # Učitavanje podataka iz datoteke
+            with open(file_path, "r") as json_file:
+                data = json.load(json_file)
 
-            for item in data.get('TypeOfCost', []):
-                TypeOfCost.objects.create(cost_code=item['cost_code'], cost_name=item['cost_name'])
+                # Unos podataka u bazu samo ako već nisu prisutni
+                for item in data.get('TypeOfCost', []):
+                    TypeOfCost.objects.get_or_create(cost_code=item['cost_code'], defaults={'cost_name': item['cost_name']})
 
-            for item in data.get('CostCenter', []):
-                CostCenter.objects.create(cost_center_code=item['cost_center_code'], cost_center_name=item['cost_center_name'])
+                for item in data.get('CostCenter', []):
+                    CostCenter.objects.get_or_create(cost_center_code=item['cost_center_code'], defaults={'cost_center_name': item['cost_center_name']})
 
-            for item in data.get('Supplier', []):
-                Supplier.objects.create(supplier_name=item['supplier_name'])
+                for item in data.get('Supplier', []):
+                    Supplier.objects.get_or_create(supplier_name=item['supplier_name'])
 
-        self.stdout.write(self.style.SUCCESS('Podaci uspješno zapisani u bazu.'))
+            self.stdout.write(self.style.SUCCESS('Podaci uspješno uneseni u bazu.'))
+
+        else:
+            self.stdout.write(self.style.WARNING('Datoteka seed_data.json nije pronađena.'))
