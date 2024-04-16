@@ -23,15 +23,31 @@ def generate_seed_data():
         ]
     }
 
-    # Upisivanje podataka u bazu
+    # Resetiranje ID-ova na 1 ako su tablice prazne
+    TypeOfCost.objects.all().delete()
+    CostCenter.objects.all().delete()
+    Supplier.objects.all().delete()
+
+    # Lista za čuvanje objekata koje ćemo dodati u bazu
+    objects_to_create = []
+
+    # Kreiranje objekata za dodavanje u bazu
     for item in data.get('TypeOfCost', []):
-        TypeOfCost.objects.create(cost_code=item['cost_code'], cost_name=item['cost_name'])
+        obj = TypeOfCost(cost_code=item['cost_code'], cost_name=item['cost_name'])
+        objects_to_create.append(obj)
 
     for item in data.get('CostCenter', []):
-        CostCenter.objects.create(cost_center_code=item['cost_center_code'], cost_center_name=item['cost_center_name'])
+        obj = CostCenter(cost_center_code=item['cost_center_code'], cost_center_name=item['cost_center_name'])
+        objects_to_create.append(obj)
 
     for item in data.get('Supplier', []):
-        Supplier.objects.create(supplier_name=item['supplier_name'])
+        obj = Supplier(supplier_name=item['supplier_name'])
+        objects_to_create.append(obj)
+
+    # Masovno dodavanje objekata u bazu
+    TypeOfCost.objects.bulk_create(objects_to_create[:2])
+    CostCenter.objects.bulk_create(objects_to_create[2:4])
+    Supplier.objects.bulk_create(objects_to_create[4:])
 
     # Generiranje JSON datoteke
     file_name = "seed_data.json"
@@ -42,5 +58,3 @@ def generate_seed_data():
 
 # Poziv funkcije za generiranje JSON datoteke i punjenje baze
 generate_seed_data()
-
-    
