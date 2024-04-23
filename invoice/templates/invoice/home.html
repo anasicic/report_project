@@ -1,40 +1,37 @@
 {% extends "invoice/base.html" %}
+
 {% block content %}
-    {% with data.TypeOfCost as type_of_costs %}
-        {% for cost_type in type_of_costs %}
-            <article class="media content-section">
-                <div class="media-body">
-                    <div class="article-metadata">
-                        <a class="mr-2" href="#">{{ cost_type.cost_code }}</a>
-                        <small class="text-muted">{{ cost_type.cost_name }}</small>
-                    </div>
-                </div>
-            </article>
-        {% endfor %}
-    {% endwith %}
 
-    {% with data.CostCenter as cost_centers %}
-        {% for cost_center in cost_centers %}
-            <article class="media content-section">
-                <div class="media-body">
-                    <div class="article-metadata">
-                        <a class="mr-2" href="#">{{ cost_center.cost_center_code }}</a>
-                        <small class="text-muted">{{ cost_center.cost_center_name }}</small>
-                    </div>
+    {% for cost_type in types_of_cost %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">{{ cost_type.cost_code }}</a>
+                    <small class="text-muted">{{ cost_type.cost_name }}</small>
                 </div>
-            </article>
-        {% endfor %}
-    {% endwith %}
+            </div>
+        </article>
+    {% endfor %}
 
-    {% with data.Supplier as suppliers %}
-        {% for supplier in suppliers %}
-            <article class="media content-section">
-                <div class="media-body">
-                    <div class="article-metadata">
-                        <small class="text-muted">{{ supplier.supplier_name }}</small>
-                    </div>
+    {% for cost_center in cost_centers %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">{{ cost_center.cost_center_code }}</a>
+                    <small class="text-muted">{{ cost_center.cost_center_name }}</small>
                 </div>
-            </article>
-        {% endfor %}
-    {% endwith %}
+            </div>
+        </article>
+    {% endfor %}
+
+    {% for supplier in suppliers %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <small class="text-muted">{{ supplier.supplier_name }}</small>
+                </div>
+            </div>
+        </article>
+    {% endfor %}
+
 {% endblock content %}

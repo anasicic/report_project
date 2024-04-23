@@ -1,5 +1,10 @@
 import json
 from invoice.models import TypeOfCost, CostCenter, Supplier
+from django.db import connection
+
+def reset_sequence(table_name):
+    with connection.cursor() as cursor:
+        cursor.execute(f"DELETE FROM sqlite_sequence WHERE name='{table_name}'")
 
 def generate_seed_data():
     # Provjeri postoji li već podaci u bazi
@@ -27,6 +32,11 @@ def generate_seed_data():
     TypeOfCost.objects.all().delete()
     CostCenter.objects.all().delete()
     Supplier.objects.all().delete()
+
+    # Resetiranje sekvenci ID-ova
+    reset_sequence(TypeOfCost._meta.db_table)
+    reset_sequence(CostCenter._meta.db_table)
+    reset_sequence(Supplier._meta.db_table)
 
     # Lista za čuvanje objekata koje ćemo dodati u bazu
     objects_to_create = []
