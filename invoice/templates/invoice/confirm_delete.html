@@ -1,0 +1,15 @@
+{% extends "invoice/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="content-section">
+    <h2>Confirm Delete</h2>
+    <p>Are you sure you want to delete invoice {{ invoice.invoice_number }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger" name="confirm_delete">Yes, delete it</button>
+        <a href="{% url 'invoice-home' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
+

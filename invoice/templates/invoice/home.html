@@ -1,37 +1,28 @@
 {% extends "invoice/base.html" %}
 
 {% block content %}
-
-    {% for cost_type in types_of_cost %}
-        <article class="media content-section">
-            <div class="media-body">
-                <div class="article-metadata">
-                    <a class="mr-2" href="#">{{ cost_type.cost_code }}</a>
-                    <small class="text-muted">{{ cost_type.cost_name }}</small>
-                </div>
-            </div>
-        </article>
-    {% endfor %}
-
-    {% for cost_center in cost_centers %}
-        <article class="media content-section">
-            <div class="media-body">
-                <div class="article-metadata">
-                    <a class="mr-2" href="#">{{ cost_center.cost_center_code }}</a>
-                    <small class="text-muted">{{ cost_center.cost_center_name }}</small>
-                </div>
-            </div>
-        </article>
-    {% endfor %}
-
-    {% for supplier in suppliers %}
-        <article class="media content-section">
-            <div class="media-body">
-                <div class="article-metadata">
-                    <small class="text-muted">{{ supplier.supplier_name }}</small>
-                </div>
-            </div>
-        </article>
-    {% endfor %}
-
+    <div class="container">
+        <h2>Invoices</h2>
+        <a href="{% url 'create-invoice' %}" class="btn btn-primary btn-sm float-right bg-steel">Add New Invoice</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Invoice Number</th>
+                    <th>Date</th>
+                    <th>Supplier</th>
+                    <th>Netto Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for invoice in invoices %}
+                <tr>
+                    <td><a href="{% url 'invoice-detail' invoice.pk %}">{{ invoice.invoice_number }}</a></td>
+                    <td>{{ invoice.date|date:"d.m.Y" }}</td>
+                    <td>{{ invoice.supplier.supplier_name }}</td>
+                    <td>{{ invoice.netto_amount }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock content %}

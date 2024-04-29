@@ -58,7 +58,7 @@ a.article-title:hover {
 .article-metadata {
   padding-bottom: 1px;
   margin-bottom: 4px;
-  border-bottom: 1px solid #e3e3e3
+  border-bottom: 1px solid #e3e3e3;
 }
 
 .article-metadata a:hover {
@@ -81,4 +81,25 @@ a.article-title:hover {
 
 .account-heading {
   font-size: 2.5rem;
+}
+
+.table {
+  width: 100%; /* Promijenite širinu tablice na 100% */
+  border-collapse: collapse; /* Spajanje granica ćelija */
+}
+
+th, td {
+  padding: 8px; /* Dodajte prostor oko sadržaja u ćelijama */
+  text-align: left; /* Poravnavanje teksta lijevo */
+  border-bottom: 1px solid #ddd; /* Dodajte donju granicu ćelija */
+}
+
+th {
+  background-color: #f2f2f2; /* Boja pozadine zaglavlja */
+  color: #333; /* Boja teksta zaglavlja */
+  font-weight: bold; /* Debljina fonta zaglavlja */
+}
+
+td {
+  vertical-align: top; /* Poravnajte sadržaj ćelija prema vrhu */
 }

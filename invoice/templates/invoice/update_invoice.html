@@ -1,0 +1,73 @@
+{% extends "invoice/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="content-section">
+    <h2>Update Invoice</h2>
+    <form id="update-form" method="post" class="crispy">
+        {% csrf_token %}
+        
+        <!-- Polje za broj računa -->
+        <div class="form-group">
+            <label for="id_invoice_number">Invoice Number:</label>
+            <input type="text" class="form-control" id="id_invoice_number" name="invoice_number" value="{{ form.instance.invoice_number }}">
+        </div>
+        
+        <!-- Polje za datum -->
+        <div class="form-group">
+            <label for="id_date">Datum (DD.MM.YYYY):</label>
+            <input type="text" class="form-control" id="id_date" name="date" value="{{ form.instance.date|date:'d.m.Y' }}">
+        </div>
+        
+        <!-- Padajući izbornik za dobavljača -->
+        <div class="form-group">
+            <label for="id_supplier">Supplier:</label>
+            <select class="form-control" id="id_supplier" name="supplier">
+                {% for supplier in form.fields.supplier.queryset %}
+                    <option value="{{ supplier.pk }}" {% if supplier.pk == form.instance.supplier.pk %}selected{% endif %}>{{ supplier }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <!-- Padajući izbornik za tip troška -->
+        <div class="form-group">
+            <label for="id_cost_code">Cost Code:</label>
+            <select class="form-control" id="id_cost_code" name="cost_code">
+                {% for cost_code in form.fields.cost_code.queryset %}
+                    <option value="{{ cost_code.pk }}" {% if cost_code.pk == form.instance.cost_code.pk %}selected{% endif %}>{{ cost_code }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <!-- Padajući izbornik za centar troška -->
+        <div class="form-group">
+            <label for="id_cost_center_code">Cost Center Code:</label>
+            <select class="form-control" id="id_cost_center_code" name="cost_center_code">
+                {% for cost_center_code in form.fields.cost_center_code.queryset %}
+                    <option value="{{ cost_center_code.pk }}" {% if cost_center_code.pk == form.instance.cost_center_code.pk %}selected{% endif %}>{{ cost_center_code }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <!-- Polje za netto iznos -->
+        <div class="form-group">
+            <label for="id_netto_amount">Netto Amount:</label>
+            <input type="text" class="form-control" id="id_netto_amount" name="netto_amount" value="{{ form.instance.netto_amount }}">
+        </div>
+        
+        <!-- Gumbi za ažuriranje i odustajanje -->
+        <button type="button" class="btn btn-primary" onclick="confirmUpdate()">Update</button>
+        <a href="{% url 'invoice-detail' pk=form.instance.pk %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+<script>
+// Funkcija za potvrdu ažuriranja
+function confirmUpdate() {
+    if (confirm('Are you sure you want to update this invoice?')) {
+        document.getElementById('update-form').submit();
+    }
+}
+</script>
+{% endblock content %}
