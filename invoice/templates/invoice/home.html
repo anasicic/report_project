@@ -10,7 +10,10 @@
                     <th>Invoice Number</th>
                     <th>Date</th>
                     <th>Supplier</th>
-                    <th>Netto Amount</th>
+                    <th>Netto Amount (EUR)</th>
+                    {% if show_username %}
+                        <th>User</th>
+                    {% endif %}
                 </tr>
             </thead>
             <tbody>
@@ -19,7 +22,10 @@
                     <td><a href="{% url 'invoice-detail' invoice.pk %}">{{ invoice.invoice_number }}</a></td>
                     <td>{{ invoice.date|date:"d.m.Y" }}</td>
                     <td>{{ invoice.supplier.supplier_name }}</td>
-                    <td>{{ invoice.netto_amount }}</td>
+                    <td>{{ invoice.netto_amount |floatformat:3 }}</td>
+                    {% if show_username %}
+                            <td>{{ invoice.user.username }}</td>
+                        {% endif %}
                 </tr>
                 {% endfor %}
             </tbody>

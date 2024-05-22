@@ -8,6 +8,7 @@ from .forms import UserRegisterForm
 
 
 
+
 def register(request):
 	if request.method =="POST":
 		form = UserRegisterForm(request.POST)
@@ -21,16 +22,19 @@ def register(request):
 		form = UserRegisterForm()
 	return render(request, 'users/register.html', {'form': form})
 
-@login_required
 def profile(request):
     user = request.user
+    if user.is_staff or user.is_superuser:
+        return redirect('admin:index')  # Preusmeravanje na Django admin panel
+    
     if request.method == 'POST':
         form = UserRegisterForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('profile')  # Promijeni "profile" s pravim URL-om za prikaz profila
+            return redirect('profile')  # Promeni "profile" s pravim URL-om za prikaz profila
     else:
         form = UserRegisterForm(instance=user)
+    
     return render(request, 'users/profile.html', {'form': form})
 
 

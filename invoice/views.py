@@ -13,7 +13,14 @@ def home(request):
     suppliers = Supplier.objects.all()
     user_invoices = Invoice.objects.filter(user=request.user)
 
-    return render(request, 'invoice/home.html', {'types_of_cost': types_of_cost, 'cost_centers': cost_centers, 'suppliers': suppliers, 'invoices': user_invoices})
+    # Ako je korisnik admin, prikazujemo sve račune
+    if request.user.is_staff or request.user.is_superuser:
+        user_invoices = Invoice.objects.all()
+    else:
+        # Ako nije admin, prikazujemo samo njegove račune
+        user_invoices = Invoice.objects.filter(user=request.user)
+
+    return render(request, 'invoice/home.html', {'types_of_cost': types_of_cost, 'cost_centers': cost_centers, 'suppliers': suppliers, 'invoices': user_invoices, 'show_username': request.user.is_staff or request.user.is_superuser})
 
 
 @login_required
