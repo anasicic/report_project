@@ -1,3 +1,5 @@
+
+
 body {
   background: #fafafa;
   color: #333333;
@@ -28,6 +30,7 @@ ul {
   font-weight: 500;
 }
 
+
 .content-section {
   background: #ffffff;
   padding: 10px 20px;
@@ -35,6 +38,7 @@ ul {
   border-radius: 3px;
   margin-bottom: 20px;
 }
+
 
 .article-title {
   color: #444444;
@@ -103,3 +107,6 @@ th {
 td {
   vertical-align: top; /* Poravnajte sadržaj ćelija prema vrhu */
 }
+
+
+

@@ -3,6 +3,8 @@ from django.contrib import messages
 from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
+from .forms import UserRegisterForm
+
 
 
 
@@ -21,7 +23,16 @@ def register(request):
 
 @login_required
 def profile(request):
-	return render(request, 'users/profile.html')
+    user = request.user
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # Promijeni "profile" s pravim URL-om za prikaz profila
+    else:
+        form = UserRegisterForm(instance=user)
+    return render(request, 'users/profile.html', {'form': form})
+
 
 
 
