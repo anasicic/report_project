@@ -9,7 +9,7 @@
                     <th scope="col" >Invoice Number</th>
                     <th scope="col">Date</th>
                     <th scope="col">Supplier</th>
-                    <th scope="col">Netto Amount</th>
+                    <th scope="col">Netto Amount (EUR)</th>
                     <th scope="col">Cost Center Code</th>
                     <th scope="col" >Cost Code</th>
                     <th scope="col">Actions</th> <!-- Dodajte novu zaglavlje za akcije -->
@@ -19,7 +19,7 @@
                     <td>{{ invoice.invoice_number }}</td>
                     <td>{{ invoice.date|date:"d.m.Y" }}</td>
                     <td>{{ invoice.supplier }}</td>
-                    <td>{{ invoice.netto_amount }}</td>
+                    <td>{{ invoice.netto_amount|floatformat:3 }}</td>
                     <td>{{ invoice.cost_center_code }}</td>
                     <td>{{ invoice.cost_code }}</td>
                     <td style="display: flex; align-items: center;">

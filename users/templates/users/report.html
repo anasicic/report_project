@@ -1,0 +1,26 @@
+{% extends "invoice/base.html" %}
+{% block content %}
+<div class="container">
+    {% for type_of_cost, expenses_by_center in expenses_by_type_and_center.items %}
+    <h2>{{ type_of_cost.cost_name }} - {{ type_of_cost.cost_code }}</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Cost Center</th>
+                <th>Cost Center Code</th>
+                <th>Total Cost (EUR)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cost_center, total_amount in expenses_by_center.items %}
+            <tr>
+                <td>{{ cost_center.cost_center_name }}</td>
+                <td>{{ cost_center.cost_center_code }}</td>
+                <td>{{ total_amount|default:"0.00" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endfor %}
+</div>
+{% endblock %}
