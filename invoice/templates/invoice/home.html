@@ -1,6 +1,6 @@
 {% extends "invoice/base.html" %}
-
 {% block content %}
+{% load custom_filters %}
     <div class="container">
         <h2>Invoices</h2>
         <a href="{% url 'create-invoice' %}" class="btn btn-primary btn-sm float-right bg-steel">Add New Invoice</a>
@@ -22,7 +22,7 @@
                     <td><a href="{% url 'invoice-detail' invoice.pk %}">{{ invoice.invoice_number }}</a></td>
                     <td>{{ invoice.date|date:"d.m.Y" }}</td>
                     <td>{{ invoice.supplier.supplier_name }}</td>
-                    <td>{{ invoice.netto_amount |floatformat:3 }}</td>
+                    <td>{{ invoice.netto_amount |format_number }}</td>
                     {% if show_username %}
                             <td>{{ invoice.user.username }}</td>
                         {% endif %}

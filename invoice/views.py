@@ -56,6 +56,7 @@ def delete_invoice(request, pk):
 
     return render(request, 'invoice/confirm_delete.html', {'invoice': invoice})
 
+@login_required
 def delete_invoice_detail(request, pk):
     invoice = get_object_or_404(Invoice, pk=pk)
 

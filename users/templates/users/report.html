@@ -1,4 +1,6 @@
 {% extends "invoice/base.html" %}
+{% load custom_filters %}
+
 {% block content %}
 <div class="container">
     {% for type_of_cost, expenses_by_center in expenses_by_type_and_center.items %}
@@ -16,7 +18,7 @@
             <tr>
                 <td>{{ cost_center.cost_center_name }}</td>
                 <td>{{ cost_center.cost_center_code }}</td>
-                <td>{{ total_amount|default:"0.00" }}</td>
+                <td>{{ total_amount|default:"0.00"|format_number }}</td>
             </tr>
             {% endfor %}
         </tbody>

@@ -1,5 +1,6 @@
 {% extends "invoice/base.html" %}
 {% load static %}
+{% load custom_filters %}
 
 {% block content %}
     <h2 style="color: #007bff;">Invoice Details</h2>
@@ -12,14 +13,13 @@
                     <th scope="col">Netto Amount (EUR)</th>
                     <th scope="col">Cost Center Code</th>
                     <th scope="col" >Cost Code</th>
-                    <th scope="col">Actions</th> <!-- Dodajte novu zaglavlje za akcije -->
-                </tr>
+                    <th scope="col">Actions</th> 
             <tbody>
                 <tr style="width: 1%;white-space: nowrap;">
                     <td>{{ invoice.invoice_number }}</td>
                     <td>{{ invoice.date|date:"d.m.Y" }}</td>
                     <td>{{ invoice.supplier }}</td>
-                    <td>{{ invoice.netto_amount|floatformat:3 }}</td>
+                    <td>{{ invoice.netto_amount|format_number }}</td>
                     <td>{{ invoice.cost_center_code }}</td>
                     <td>{{ invoice.cost_code }}</td>
                     <td style="display: flex; align-items: center;">

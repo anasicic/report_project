@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "crispy_forms",
     "crispy_bootstrap4",
+    "django.contrib.humanize",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -69,6 +70,10 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
+            "libraries":{
+                "custom_filters": "users.templatetags.custom_filters",
+            
+            }
         },
     },
 ]
@@ -134,6 +139,14 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'invoice-home'
 LOGIN_URL = 'login'
+
+LANGUAGE_CODE = 'it'  
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
