@@ -27,13 +27,13 @@ def register(request):
 def profile(request):
     user = request.user
     if user.is_staff or user.is_superuser:
-        return redirect('admin:index')  # Preusmeravanje na Django admin panel
+        return redirect('admin:index')  
     
     if request.method == 'POST':
         form = UserRegisterForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('profile')  # Promeni "profile" s pravim URL-om za prikaz profila
+            return redirect('profile')  
     else:
         form = UserRegisterForm(instance=user)
     
@@ -44,14 +44,14 @@ def report(request):
     types_of_cost = TypeOfCost.objects.all()
     cost_centers = CostCenter.objects.all()
 
-    expenses_by_type_and_center = {}  # Rečnik za čuvanje ukupnih troškova po vrsti troška i centru troška
+    expenses_by_type_and_center = {}  
 
     for type_of_cost in types_of_cost:
-        expenses_by_center = {}  # Rečnik za čuvanje ukupnih troškova po centru troška za trenutnu vrstu troška
+        expenses_by_center = {} 
         for cost_center in cost_centers:
-            # Prikupljanje svih troškova za trenutni tip troška i centar troška
+            
             expenses = Invoice.objects.filter(cost_code=type_of_cost, cost_center_code=cost_center)
-            # Izračunavanje ukupnog iznosa troškova za ovaj centar troška
+            
             total_amount = expenses.aggregate(total_amount=Sum('netto_amount'))['total_amount']
             expenses_by_center[cost_center] = total_amount or 0  # Dodavanje ukupnog iznosa u rečnik
         expenses_by_type_and_center[type_of_cost] = expenses_by_center
