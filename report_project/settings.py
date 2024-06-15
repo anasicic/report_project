@@ -139,11 +139,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'invoice-home'
 LOGIN_URL = 'login'
+ 
 
-LANGUAGE_CODE = 'it'  
-USE_I18N = True
 USE_L10N = True
-USE_TZ = True
+
 
 
 

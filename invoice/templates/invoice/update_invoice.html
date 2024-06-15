@@ -54,7 +54,7 @@
         <!-- Polje za netto iznos -->
         <div class="form-group">
             <label for="id_netto_amount">Netto Amount:</label>
-            <input type="text" class="form-control" id="id_netto_amount" name="netto_amount" value="{{ form.instance.netto_amount }}">
+            <input type="text" class="form-control" id="id_netto_amount" name="netto_amount" value="{{ form.instance.netto_amount |format_number }}">
         </div>
         
         <!-- Gumbi za ažuriranje i odustajanje -->
