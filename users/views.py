@@ -53,7 +53,7 @@ def report(request):
             expenses = Invoice.objects.filter(cost_code=type_of_cost, cost_center_code=cost_center)
             
             total_amount = expenses.aggregate(total_amount=Sum('netto_amount'))['total_amount']
-            expenses_by_center[cost_center] = total_amount or 0  # Dodavanje ukupnog iznosa u rečnik
+            expenses_by_center[cost_center] = total_amount or 0  # Dodavanje ukupnog iznosa u rječnik
         expenses_by_type_and_center[type_of_cost] = expenses_by_center
 
     return render(request, 'users/report.html', {'expenses_by_type_and_center': expenses_by_type_and_center})
