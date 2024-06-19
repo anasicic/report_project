@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name='register'),
     path('report/', user_views.report, name = 'report'),
+    path('export_to_excel/', user_views.export_to_excel, name='export_to_excel'),
+    path('cost_chart/<int:type_of_cost_id>/', user_views.cost_chart, name='cost_chart'),
     path('profile/', user_views.profile, name='profile'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),

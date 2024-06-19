@@ -47,7 +47,9 @@ Tijek aplikacije
 
 - Administrator, uz sve opcije dostupne običnim korisnicima, može pristupiti administratorskom sučelju preko linka Profile
 - Preko administratorskog sučelja može dodavati i brisati korisnike, dobavljače, vrste troškova i mjesta troškova.
-- Administrator ima pristup linku "Report" koji prikazuje ukupne troškove po mjestima troška.
+- Administrator ima pristup linku "Report" koji prikazuje ukupne troškove po mjestima troška 
+- Izvještaj se može izvesti u Excel formatu, a podaci se mogu vizualizirati u obliku grafičkih prikaza
+  
 
 3. Prikaz popisa ulaznih računa:
 
