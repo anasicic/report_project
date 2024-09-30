@@ -121,7 +121,7 @@ Aplikacija se sastoji od dvije aplikacije: `invoice` i `users`. Obje aplikacije 
 
 ## Tehnologije
 
-- **Django** - Web framework za backend.
-- **SQLite** - Baza podataka.
-- **HTML, CSS, Bootstrap** - Frontend tehnologije za izradu sučelja.
+- **Django** - Web framework za backend
+- **SQLite** - Baza podataka
+- **HTML, CSS, Bootstrap** - Frontend tehnologije za izradu sučelja
 
