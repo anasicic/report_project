@@ -13,11 +13,11 @@
 
 ## Pokretanje servera
 
-Kako biste pokrenuli projekat lokalno, pratite sledeće korake:
+Kako biste pokrenuli projekt lokalno, pratite sljedeće korake:
 
 1. **Klonirajte repozitorij**:
 
-    Ako projekat preuzimate sa GitHub-a, klonirajte repozitorij koristeći `git clone`:
+    Ako projekt preuzimate sa GitHub-a, klonirajte repozitorij koristeći `git clone`:
 
     ```bash
     git clone https://github.com/anasicic/report_project.git
@@ -103,7 +103,7 @@ Aplikacija se sastoji od dvije aplikacije: `invoice` i `users`. Obje aplikacije 
 
 ### 4. Ažuriranje i brisanje računa
 
-- Nakon ažuriranja ili brisanja računa, korisnik dobiva poruku o uspjehu i vraća se na početnu stranicu.
+- Nakon ažuriranja ili brisanja računa, korisnik dobiva poruku o uspješno izvršenoj radnji i vraća se na početnu stranicu.
 
 ### 5. Dodavanje novog računa
 
