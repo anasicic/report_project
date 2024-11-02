@@ -1,62 +1,61 @@
 # Report Project
 
-**Report Project** je web aplikacija temeljena na MTV (Model-Template-View) arhitekturi, izrađena u Djangu. Aplikacija omogućava unos ulaznih računa i izvještavanje o ukupnim troškovima po mjestima troška.
+**Report Project** is a web application based on the MTV (Model-Template-View) architecture, built with Django. The application allows for the entry of incoming invoices and provides reports on total costs by cost centers.
 
-## Sadržaj
+## Contents
 
-- [Pokretanje servera](#pokretanje-servera)
-- [Struktura aplikacije](#struktura-aplikacije)
-- [Funkcionalnosti](#funkcionalnosti)
-- [Tehnologije](#tehnologije)
+- [Starting the Server](#starting-the-server)
+- [Application Structure](#application-structure)
+- [Features](#features)
+- [Technologies](#technologies)
 
 ---
 
-## Pokretanje servera
+## Starting the Server
 
-Kako biste pokrenuli projekt lokalno, pratite sljedeće korake:
+To run the project locally, follow these steps:
 
-1. **Klonirajte repozitorij**:
+1. **Clone the repository**:
 
-    Ako projekt preuzimate sa GitHub-a, klonirajte repozitorij koristeći `git clone`:
+    If you are downloading the project from GitHub, clone the repository using `git clone`:
 
     ```bash
     git clone https://github.com/anasicic/report_project.git
     ```
 
+2. **Navigate to the project directory**:
 
-2. **Idite u direktorij projekta**:
-
-    Nakon što je projekt kloniran, uđite u direktorij projekta:
+    After cloning the project, navigate to the project directory:
 
     ```bash
     cd report_project
     ```
 
-3. **Instalirajte potrebne pakete**:
+3. **Install the required packages**:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-4. **Stvorite migracijske datoteke za bazu podataka**:
+4. **Create migration files for the database**:
 
     ```bash
     python manage.py makemigrations
     ```
 
-5. **Izvršite migraciju kako biste primijenili promjene u bazi podataka**:
+5. **Apply migrations to update the database**:
 
     ```bash
     python manage.py migrate
     ```
 
-6. **Pokrenite razvojni server**:
+6. **Start the development server**:
 
     ```bash
     python manage.py runserver
     ```
 
-7. **Otvorite preglednik i idite na**:
+7. **Open your browser and go to**:
 
     ```url
     http://127.0.0.1:8000/
@@ -64,64 +63,63 @@ Kako biste pokrenuli projekt lokalno, pratite sljedeće korake:
 
 ---
 
-## Struktura aplikacije
+## Application Structure
 
-Aplikacija se sastoji od dvije aplikacije: `invoice` i `users`. Obje aplikacije nasljeđuju `base.html`, u kojem je definiran kostur svih stranica.
+The application consists of two apps: `invoice` and `users`. Both apps inherit from `base.html`, which defines the overall layout for all pages.
 
-- **Baza podataka**: Aplikacija koristi SQLite za pohranu podataka.
-- **Frontend**: Frontend je izrađen pomoću HTML, CSS i Bootstrap.
+- **Database**: The application uses SQLite for data storage.
+- **Frontend**: The frontend is created with HTML, CSS, and Bootstrap.
 
-### Invoice aplikacija
+### Invoice App
 
-- Sadrži četiri modela: 
+- Contains four models:
   - `TypeOfCost`
   - `CostCenter`
   - `Supplier`
   - `Invoice`
 
-- Model `Invoice` je međutablica koja povezuje ostale modele, uključujući i korisnika (User).
+- The `Invoice` model serves as an intermediary table connecting the other models, including a link to the user (User).
 
 ---
 
-## Funkcionalnosti
+## Features
 
-### 1. Prijava korisnika
+### 1. User Login
 
-- Pri pokretanju aplikacije, korisnicima se prikazuje sučelje za prijavu (Login).
-- Neregistrirani korisnici mogu se registrirati putem forme na linku "Register".
-- **Funkcionalnost**: Korisnička autentifikacija (prijava, registracija, odjava).
+- On application launch, users are presented with a login interface.
+- Unregistered users can register via the form on the "Register" link.
+- **Functionality**: User authentication (login, registration, logout).
 
-### 2. Administratorske ovlasti
+### 2. Administrative Privileges
 
-- Administrator može pristupiti sučelju za dodavanje/brisanje korisnika, dobavljača, vrsta troškova i mjesta troškova.
-- **Funkcionalnost**: Administratorske funkcije (dodavanje i brisanje korisnika, generiranje izvještaja).
+- Administrators can access the interface to add/remove users, suppliers, cost types, and cost centers.
+- **Functionality**: Administrative functions (adding and removing users, generating reports).
 
-### 3. Prikaz popisa ulaznih računa
+### 3. Display of Incoming Invoices
 
-- Prikazuje broj računa, datum, dobavljača i netto iznos.
-- Administratori vide dodatno i korisnika koji je unio račun.
+- Displays the invoice number, date, supplier, and net amount.
+- Administrators additionally see the user who entered the invoice.
 
-### 4. Ažuriranje i brisanje računa
+### 4. Invoice Update and Deletion
 
-- Nakon ažuriranja ili brisanja računa, korisnik dobiva poruku o uspješno izvršenoj radnji i vraća se na početnu stranicu.
+- After updating or deleting an invoice, the user receives a confirmation message and is redirected to the homepage.
 
-### 5. Dodavanje novog računa
+### 5. Adding a New Invoice
 
-- Korisnici mogu unositi nove račune putem forme na početnoj stranici.
+- Users can enter new invoices via the form on the homepage.
 
-### 6. Korisnički profil
+### 6. User Profile
 
-- Korisnici mogu ažurirati svoje podatke putem stranice "Profile".
+- Users can update their information through the "Profile" page.
 
-### 7. Odjava
+### 7. Logout
 
-- Korisnik se može odjaviti klikom na "Logout".
+- Users can log out by clicking "Logout".
 
 ---
 
-## Tehnologije
+## Technologies
 
-- **Django** - Web framework za backend
-- **SQLite** - Baza podataka
-- **HTML, CSS, Bootstrap** - Frontend tehnologije za izradu sučelja
-
+- **Django** - Web framework for the backend
+- **SQLite** - Database
+- **HTML, CSS, Bootstrap** - Frontend technologies for the interface
